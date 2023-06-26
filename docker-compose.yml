@@ -1,0 +1,35 @@
+# version: '3.3'
+
+# services:
+# postgres:
+# image: postgres:13
+# enviroment:
+# - POSTGRES_BD=my_store
+# - POSTGRES_USER=nico
+# - POSTGRES_PASSWORD=admin123
+# ports:
+# - 5432:5432
+version: '3.8'
+
+services:
+  db:
+    container_name: pg_container
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: name_db
+    ports:
+      - "5432:5432"
+  pgadmin:
+    container_name: pgadmin4_container
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "5050:80"
+    volumes:
+      - './postgres_data:/var/lib/postgresql/data'
